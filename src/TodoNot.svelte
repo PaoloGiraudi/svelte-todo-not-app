@@ -23,7 +23,60 @@
     },
   ];
 
+  function addTodoNot(event) {
+    if (event.key === "Enter") {
+      todosNot = [
+        ...todosNot,
+        {
+          id: nextId,
+          title: newTodoNotTitle,
+          completed: false,
+        },
+      ];
 
+      nextId++;
+      newTodoNotTitle = "";
+    }
+  }
+
+  $: todosNotRemaining = filteredTodosNot.filter((t) => !t.completed).length;
+  $: filteredTodosNot =
+    currentFilter === "all"
+      ? todosNot
+      : currentFilter === "completed"
+      ? todosNot.filter((t) => t.completed)
+      : todosNot.filter((t) => !t.completed);
+
+  function checkAllTodosNot(event) {
+    todosNot.forEach((t) => t.completed === event.target.checked);
+    todosNot = todosNot;
+  }
+
+  function updateFilter(newFilter) {
+    currentFilter = newFilter;
+  }
+
+  function clearCompleted() {
+    todosNot = todosNot.filter((t) => !t.completed);
+  }
+
+  function handleDeleteItem(event) {
+    todosNot = todosNot.filter((t) => t.id !== event.detail.id);
+  }
+
+  function handleToggleComplete(event) {
+    const index = todosNot.findIndex((t) => t.id === event.detail.id);
+    const updatedTodoNot = {
+      ...todosNot[index],
+      completed: !todosNot[index].completed,
+    };
+
+    todosNot = [
+      ...todosNot.slice(0, index),
+      updatedTodoNot,
+      ...todosNot.slice(index + 1),
+    ];
+  }
 </script>
 
 <div class="container">
@@ -40,7 +93,7 @@
   {#each filteredTodosNot as item}
     <div class="todo-not-item">
       <TodoNotItem
-        {...todoNot}
+        {...todosNot}
         on:deleteTodoNot={handleDeleteItem}
         on:toggleComplete={handleToggleComplete}
       />
@@ -84,3 +137,9 @@
     </div>
   </div>
 </div>
+
+<style>
+  img {
+    max-width: 100%;
+  }
+</style>
