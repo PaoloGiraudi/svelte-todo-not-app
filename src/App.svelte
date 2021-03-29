@@ -1,7 +1,6 @@
 <script>
+  import TodoNot from "./TodoNot.svelte";
 </script>
 
-<main />
+<TodoNot/>
 
-<style>
-</style>
