@@ -48,7 +48,8 @@
       : todosNot.filter((t) => !t.completed);
 
   function checkAllTodosNot(event) {
-    todosNot.forEach((t) => t.completed === event.target.checked);
+    console.log(event);
+    todosNot.forEach((t) => (t.completed = event.target.checked));
     todosNot = todosNot;
   }
 
@@ -90,7 +91,7 @@
     on:keydown={addTodoNot}
   />
 
-  {#each filteredTodosNot as item}
+  {#each filteredTodosNot as todosNot}
     <div class="todo-not-item">
       <TodoNotItem
         {...todosNot}
@@ -141,5 +142,43 @@
 <style>
   img {
     max-width: 100%;
+  }
+  .container {
+    max-width: 800px;
+    margin: 10px auto;
+  }
+
+  /* .todo-input {
+    width: 100%;
+    padding: 10px, 20px;
+    font-size: 18px;
+    margin-bottom: 20px;
+  } */
+
+  .inner-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 16px;
+    border-top: 1px solid lightgrey;
+    padding-top: 15px;
+    margin-bottom: 13px;
+  }
+  .inner-container-input {
+    margin-right: 12px;
+  }
+  button {
+    font-size: 14px;
+    background-color: white;
+    appearance: none;
+  }
+  button:hover {
+    background: lightseagreen;
+  }
+  button:focus {
+    outline: none;
+  }
+  .active {
+    background: lightseagreen;
   }
 </style>
