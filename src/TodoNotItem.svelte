@@ -1,6 +1,24 @@
 <script>
   import { createEventDispatcher } from "svelte";
   import { fly } from "svelte/transition";
+
+  export let id;
+  export let title;
+  export let completed;
+
+  const dispatch = createEventDispatcher();
+
+  function deleteTodoNot() {
+    dispatch("deleteTodoNot", {
+      id: id,
+    });
+  }
+
+  function toggleComplete() {
+    dispatch("toggleComplete", {
+      id: id,
+    });
+  }
 </script>
 
 <div class="todo-not-item">
@@ -8,9 +26,10 @@
     <input
       type="checkbox"
       bind:checked={completed}
-      on:change={toggleCompleted}
+      on:change={toggleComplete}
     />
     <div class="todo-not-item-label" class:completed>{title}</div>
   </div>
   <div class="remove-item" on:click={deleteTodoNot}>x</div>
 </div>
+
