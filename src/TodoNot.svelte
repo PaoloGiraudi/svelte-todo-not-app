@@ -5,20 +5,22 @@
   let currentFilter = "all";
   let nextId = 4;
 
+  // Array of objects to store the items
+
   let todosNot = [
     {
       id: 1,
-      title: "I will not do",
+      title: "Paint my house yellow",
       completed: false,
     },
     {
       id: 2,
-      title: "I will still not do",
+      title: "Crash into a bus with my bike",
       completed: false,
     },
     {
       id: 3,
-      title: "I will never do",
+      title: "Forget sunscreen",
       completed: false,
     },
   ];
@@ -80,8 +82,7 @@
   }
 </script>
 
-<div class="container">
-  <img src={"/img/dont-cross.png"} alt="dont cross" />
+<div class="app-container">
   <h2>Svelte Todo NOT App.</h2>
   <input
     type="text"
@@ -140,10 +141,7 @@
 </div>
 
 <style>
-  img {
-    max-width: 100%;
-  }
-  .container {
+  .app-container {
     max-width: 800px;
     margin: 10px auto;
   }
