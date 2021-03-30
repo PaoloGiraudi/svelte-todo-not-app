@@ -21,38 +21,38 @@
   }
 </script>
 
-<div class="todo-not-item">
-  <div class="todo-not-item-left" transition:fly={{ y: 20, duration: 300 }}>
-    <input
-      type="checkbox"
-      bind:checked={completed}
-      on:change={toggleComplete}
-    />
-    <div class="todo-not-item-label" class:completed>{title}</div>
+<div class="todo-not-container">
+  <div class="todo-not-item" transition:fly={{ y: 20, duration: 300 }}>
+    <div class="icon" on:click={toggleComplete}>
+      {#if completed}
+        ✔️
+      {:else}
+        🔲
+      {/if}
+    </div>
+    <div class="label" class:completed>{title}</div>
   </div>
-  <div class="remove-item" on:click={deleteTodoNot}>x</div>
+  <div class="icon" on:click={deleteTodoNot}>❌</div>
 </div>
 
 <style>
-  .todo-not-item {
-    margin-bottom: 15px;
+  .todo-not-container {
+    margin: 1em 0.5em;
+    padding: 0.25em;
     display: flex;
     align-items: center;
     justify-content: space-between;
     animation-duration: 0.3s;
   }
-  .remove-item {
+  .icon {
     cursor: pointer;
-    margin-left: 15px;
   }
-  .remove-item:hover {
-    color: lightseagreen;
-  }
-  .todo-not-item-left {
+
+  .todo-not-item {
     display: flex;
     align-items: center;
   }
-  .todo-not-item-label {
+  .label {
     border: 1px solid white;
     margin-left: 12px;
   }
