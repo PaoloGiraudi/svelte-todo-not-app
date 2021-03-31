@@ -50,7 +50,6 @@
       : todosNot.filter((t) => !t.completed);
 
   function checkAllTodosNot(event) {
-    console.log(event);
     todosNot.forEach((t) => (t.completed = event.target.checked));
     todosNot = todosNot;
   }
@@ -83,10 +82,14 @@
 </script>
 
 <div class="app-container">
-  <h2>Svelte Todo NOT App.</h2>
+  <header>
+    <div class="tape" />
+    <h1>Svelte Todo NOT App</h1>
+    <div class="tape" />
+  </header>
   <input
     type="text"
-    class="todoNot-input"
+    class="todo-not-input"
     placeholder="Today I will NOT..."
     bind:value={newTodoNotTitle}
     on:keydown={addTodoNot}
@@ -107,12 +110,12 @@
       <label>
         <input
           type="checkbox"
-          class="inner-container-input"
+          class="inner-container-text"
           on:change={checkAllTodosNot}
         /> Check All
       </label>
     </div>
-    <div>{todosNotRemaining} items left</div>
+    <div class="inner-container-text">{todosNotRemaining} items left</div>
   </div>
 
   <div class="inner-container">
@@ -146,37 +149,67 @@
     margin: 10px auto;
   }
 
-  /* .todo-input {
+  .tape {
+    height: 1rem;
     width: 100%;
-    padding: 10px, 20px;
-    font-size: 18px;
-    margin-bottom: 20px;
-  } */
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      45deg,
+      rgba(0, 0, 0, 1) 10%,
+      rgba(255, 231, 0, 1) 10%,
+      rgba(255, 231, 0, 1) 20%,
+      rgba(0, 0, 0, 1) 20%,
+      rgba(0, 0, 0, 1) 30%,
+      rgba(255, 231, 0, 1) 30%,
+      rgba(255, 231, 0, 1) 40%,
+      rgba(0, 0, 0, 1) 40%,
+      rgba(0, 0, 0, 1) 50%,
+      rgba(255, 231, 0, 1) 50%,
+      rgba(255, 231, 0, 1) 60%,
+      rgba(0, 0, 0, 1) 60%,
+      rgba(0, 0, 0, 1) 70%,
+      rgba(255, 231, 0, 1) 70%,
+      rgba(255, 231, 0, 1) 80%,
+      rgba(0, 0, 0, 1) 80%,
+      rgba(0, 0, 0, 1) 90%,
+      rgba(255, 231, 0, 1) 90%
+    );
+  }
 
+  h1 {
+    text-align: center;
+  }
+  .todo-not-input {
+    margin: 1rem 0.5rem;
+    margin-bottom: 0;
+    padding: 0.5rem;
+  }
   .inner-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 16px;
+    margin: 1rem 0.5rem;
     border-top: 1px solid lightgrey;
-    padding-top: 15px;
-    margin-bottom: 13px;
   }
-  .inner-container-input {
-    margin-right: 12px;
+  .inner-container-text {
+    padding: 1em 0.5em;
   }
   button {
-    font-size: 14px;
-    background-color: white;
-    appearance: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    background-color: rgb(199, 194, 194);
+    margin-top: 1rem;
+    padding: 0.5em 1em;
   }
   button:hover {
-    background: lightseagreen;
+    background: rgba(255, 231, 0, 1);
   }
   button:focus {
     outline: none;
   }
   .active {
-    background: lightseagreen;
+    background: rgba(255, 231, 0, 1);
   }
 </style>

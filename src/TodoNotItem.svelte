@@ -37,8 +37,7 @@
 
 <style>
   .todo-not-container {
-    margin: 1em 0.5em;
-    padding: 0.25em;
+    margin: 1rem 0.5rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
